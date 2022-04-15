@@ -45,7 +45,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
             <InfiniteScroll
                 dataLength={articles.length}
@@ -54,7 +54,6 @@ const News = (props) => {
                 loader={<Spinner />}
             >
                 <div className="container">
-
                     <div className="row">
                         {articles.map((element) => {
                             return <div className="col-md-4" key={element.url}>
@@ -62,9 +61,9 @@ const News = (props) => {
                                     description={element.description ? element.description : ""}
                                     imageUrl={element.urlToImage? element.urlToImage : "http://shorturl.at/kzAO8"}
                                     newsUrl={element.url}
-                                    author={element.author}
+                                    author={element.author? element.author : "Unknown"}
                                     date={element.publishedAt}
-                                    source={element.source.name} />
+                                    source={element.source.name}/>
                             </div>
                         })}
                     </div>
@@ -88,4 +87,4 @@ News.propTypes = {
     category: PropTypes.string,
 }
 
-export default News
+export default News;
